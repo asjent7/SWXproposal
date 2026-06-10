@@ -303,7 +303,53 @@ table.matrix .text-val{font-size:.74rem;color:var(--muted)}
   .pricing-amount{font-size:1.75rem}
   nav .brand{font-size:.85rem}
 }
-@media(max-width:700px){.pkg-overview-grid{grid-template-columns:1fr!important}}</style>
+@media(max-width:700px){.pkg-overview-grid{grid-template-columns:1fr!important}}
+/* ── MOBILE MATRIX FIX ── */
+@media(max-width:700px){
+
+  /* Package overview — stack to single column */
+  .pkg-overview-grid{
+    grid-template-columns:1fr !important;
+  }
+
+  /* Matrix — hide col 1 (Growth Strategy) and col 3 (Sponsorship) on mobile */
+  /* Show only: Service label + recommended middle column */
+  table.matrix{min-width:unset;width:100%}
+  table.matrix th:nth-child(1){width:60% !important}
+  table.matrix th:nth-child(2),
+  table.matrix td:nth-child(2){display:none !important}
+  table.matrix th:nth-child(4),
+  table.matrix td:nth-child(4){display:none !important}
+  table.matrix th:nth-child(3){width:40% !important}
+  table.matrix .section-row td{font-size:.7rem;padding:.5rem .6rem}
+
+  /* Matrix mobile header label */
+  table.matrix th.hl::before{
+    content:'Recommended: ';
+    display:block;
+    font-size:.6rem;
+    color:rgba(255,255,255,.7);
+    font-weight:400;
+    letter-spacing:.06em;
+    margin-bottom:2px;
+  }
+
+  /* Add a note above the matrix */
+  .matrix-mobile-note{display:block !important}
+
+  /* Platform table — hide replaces column on mobile */
+  #feat-table > div{
+    grid-template-columns:1fr 26px !important;
+    gap:.5rem !important;
+  }
+  div[style*="grid-template-columns:1fr 1fr auto"][style*="background:#1A1A1A"]{
+    grid-template-columns:1fr 26px !important;
+  }
+  div[style*="grid-template-columns:1fr 1fr auto"][style*="background:#1A1A1A"] > div:nth-child(2){
+    display:none !important;
+  }
+}
+</style>
 </head>
 <body>
 
@@ -640,7 +686,10 @@ table.matrix .text-val{font-size:.74rem;color:var(--muted)}
     </div>
   </div>
 
-  <div class="matrix-wrap">
+  <div class="matrix-mobile-note" style="display:none;background:#F5E8F8;border:1px solid #810092;border-radius:8px;padding:.7rem 1rem;margin-bottom:.75rem;font-size:.8rem;color:#810092;font-weight:600">
+  Showing the <strong>Growth + Audience Builder</strong> (recommended) column. Full comparison available on desktop.
+</div>
+<div class="matrix-wrap">
     <table class="matrix">
       <thead>
         <tr>
